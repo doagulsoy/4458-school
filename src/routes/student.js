@@ -4,12 +4,32 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const sql = require("mssql");
-const getConnection = require("../connection/config");
+const getConnection = require("../../connection/config");
 const secretKey = process.env.secretKey;
 
 const app = express();
 app.use(express.json()); // To parse JSON request bodies
 app.use(cors()); // To enable Cross-Origin Resource Sharing
+
+
+//get all students from database
+app.get("/getStudents", async (req, res) => {
+  try {
+    const connection = await getConnection();
+    const request = new sql.Request(connection);
+
+    const result = await request.query("SELECT * FROM dbo.Student");
+    //cast id to string
+    result.recordset.forEach((student) => {
+      student.id = student.id.toString();
+    });
+    const students = result.recordset;
+    return res.send(students);
+  } catch (err) {
+    console.error("Error while fetching students:", err);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 // Endpoint to get a student by ID
 app.get("/:id", async (req, res) => {
