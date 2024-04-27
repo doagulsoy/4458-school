@@ -6,7 +6,7 @@ const studentRouter = require("./routes/student");
 const swaggerDocument = require("./swagger.json");
 const getConnection = require("./connection/config");
 const bodyParser = require("body-parser");
-const PORT = 4001;
+const PORT = 5001;
 
 let pool = null;
 
