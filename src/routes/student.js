@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const sql = require("mssql");
-const getConnection = require("../../connection/config");
+const getConnection = require("../connection/config");
 const secretKey = process.env.secretKey;
 
 const app = express();
