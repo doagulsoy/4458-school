@@ -66,11 +66,11 @@ app.use(
 );
 app.use("/student", studentRouter);
 
-if (process.env.VERCEL == "1") {
-} else {
+
+
   app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
   });
-}
+
 
 module.exports = app;
