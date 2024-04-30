@@ -34,14 +34,6 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(dbConnectionMiddleware);
-app.use(
-  "/api-docs",
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDocument, {
-    explorer: true,
-    customCssUrl: CSS_URL,
-  })
-);
 app.use("/student", studentRouter);
 
 
