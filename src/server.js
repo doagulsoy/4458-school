@@ -3,7 +3,6 @@ const app = express();
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const studentRouter = require("./routes/student");
-const swaggerDocument = require("./swagger.json");
 const getConnection = require("./connection/config");
 const bodyParser = require("body-parser");
 const PORT = 5001;
@@ -23,27 +22,6 @@ async function dbConnectionMiddleware(req, res, next) {
   }
 }
 
-/**
- * @swagger
- * /tickets:
- *   get:
- *     summary: Retrieve a list of tickets
- *     description: Endpoint to get information about all users. Requires JWT authentication.
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: A list of tickets
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/ticket'
- *       401:
- *         description: Unauthorized access - No token provided or token is invalid
- */
-//get all tickets from database with authentification
 app.get("/", async (req, res) => {
   res.status(200).send("API Server is running!");
 });
